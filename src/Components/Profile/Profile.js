@@ -13,7 +13,7 @@ function Profile(){
             <h1 className="profile-heading">----- Your Profile Details -----</h1>
             {userData ? (
                 <div className="user-data">
-                    {/* <p>User ID: {userData.userId}</p> */}
+                    {/* <p>User ID: {userData.userId}</p> //remove userid displaying at the frontend */}
                     <p>Username: {userData.username}</p>
                     <p>Email: {userData.email}</p>
                     <p>First Name:{userData.firstName}</p>
