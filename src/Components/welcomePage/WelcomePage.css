@@ -1,0 +1,55 @@
+.welcome-page{
+    background: url("/src/Images/welcomeBg.jpg");
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    background-size: cover;
+}
+
+.navigation {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .navigation-links {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .navigation a {
+    text-decoration: none;
+    color:black;
+    font-weight: bold;
+    transition: color 0.3s ease;
+    font-size: larger;
+    
+  }
+  
+  .navigation a:hover {
+    color:blue;
+  }
+
+  .navigation-box {
+    display: flex;
+    flex-direction: column;
+    background-color:hotpink;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    margin-right: 20px;
+  }
+
+  /* Add styles for the h1 header */
+.welcome-page h1 {
+  font-family:cursive;
+  font-size: 80px; 
+  color:brown;
+  /* margin-top: 0.00000001px; 
+  padding: 10px; */
+}

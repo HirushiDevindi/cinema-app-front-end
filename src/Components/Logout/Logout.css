@@ -1,0 +1,44 @@
+.logout-container {
+    display: flex;
+    flex-direction: column;
+
+    
+    /* background-color: #f4f4f4; */
+  
+
+    text-align: center;
+    background: url("/src/Images/home.jpg");
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    background-size: cover;
+  }
+  
+  .confirmation-message {
+    margin-bottom: 20px; 
+    font-size: 18px;
+  }
+  
+  .logout-button {
+    font-size: 16px; 
+    padding: 10px 20px; 
+    background-color: #3498db;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .logout-button-clicked {
+    font-size: 16px;
+    padding: 10px 20px;
+    background-color: #ff0000;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  

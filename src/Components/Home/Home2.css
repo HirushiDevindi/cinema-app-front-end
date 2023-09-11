@@ -1,0 +1,44 @@
+.home2 {
+    background: url("/src/Images/home\ 2.jpg");
+    text-align: center;
+    width: 100vw;
+    height: 100vh;
+    background-size: cover;
+    display: flex;
+    flex-direction: column; /* Stack elements vertically */
+    align-items: center;
+    justify-content: center; /* Align content at the top */
+  }
+  
+  .header {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px 5px 0 0;
+    text-align: center;
+    margin-top: 30;
+  }
+  
+  .header h2 {
+    margin: 0;
+    padding: 0;
+  }
+  
+  .content {
+    padding: 20px;
+  }
+  
+  .section {
+    margin-bottom: 20px; /* Add space between sections */
+  }
+  
+  ul {
+    list-style-type: disc;
+    padding-left: 20px;
+    text-align: left;
+  }
+  
+  li {
+    margin-bottom: 10px;
+  }
+  

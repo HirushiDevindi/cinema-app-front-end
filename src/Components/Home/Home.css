@@ -1,0 +1,92 @@
+.Home{
+    background: url("/src/Images/old.jpg");
+}
+
+.home2{
+    background: url("/src/Images/home\ 2.jpg");
+    text-align: center;
+  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    background-size: cover;
+}
+
+/* Navbar CSS */
+.navbar {
+    background-color:#000;
+    /* background: url("./Images/imageBg.jpg"); */
+    height: 50px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  
+  .menu-bars {
+    margin-left: 2rem;
+    font-size: 2rem;
+    background: none;
+    color:#fff;
+  }
+  
+  .nav-menu {
+    background-color:darkgrey;
+    width: 200px;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: -100%;
+    transition: 850ms;
+  }
+  
+  .nav-menu.active {
+    left: 0;
+    transition: 450ms;
+  }
+  
+  .nav-text {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 8px 0px 8px 16px;
+    list-style: none;
+    height: 60px;
+  }
+  
+  .nav-text a {
+    text-decoration: none;
+    color: #151414;
+    font-size: 18px;
+    width: 95%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    border-radius: 4px;
+  }
+  
+  .nav-text a:hover {
+    background-color: #000000;
+    color:aqua;
+  }
+  
+  .nav-menu-items {
+    width: 100%;
+  }
+  
+  .navbar-toggle {
+    background-color:#fff;
+    width: 50%;
+    height: 25px;
+    display: flex;
+    justify-content:center;
+    align-items:flex-end;
+  }
+  
+  span {
+    margin-left: 5px;
+  }
