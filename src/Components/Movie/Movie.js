@@ -20,7 +20,7 @@ const Movie = () => {
         MovieService.getAllMovies().then((response) => {
             setMovies(response.data)
             setTimeout(() => {
-                setIsLoading(false); // Turn off loading state 
+                setIsLoading(false); // Turn off loading state after data is loaded
             }, 200);
             console.log(response.data);
         }).catch(error =>{
