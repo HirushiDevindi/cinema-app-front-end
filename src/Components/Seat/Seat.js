@@ -21,7 +21,7 @@ function Seat() {
         SeatService.getAllSeats().then((response) => {
             setSeats(response.data)
             setTimeout(() => {
-                setIsLoading(false); // Turn off loading state 
+                setIsLoading(false); // Turn off loading state for 0.2s
             }, 200);
             console.log(response.data);
         }).catch(error =>{
