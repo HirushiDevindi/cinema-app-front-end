@@ -25,7 +25,7 @@ This project will be based on the **CINEMA SIDE** of this appliaction.
 - **Deployment** - Using Docker, dockerized all back-end services and front-end applications.
 - **Version Control** - Git.
 
-This Repository contains the complete backend of the Cinema Side of the application. you can find the complete frontend of the Cinema Side of this application here
+This Repository contains the complete frontend of the Cinema Side of the application. you can find the complete backend of the Cinema Side of this application here
 [CinemaAppBackend](https://github.com/HirushiDevindi/CinemaAppBackend)
 
 
