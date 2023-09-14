@@ -10,6 +10,10 @@ import "./SignUp.css";
 
 function SignUp(){
 
+    const [form] = Form.useForm();
+
+    
+
 
     const[username, setUsername] = useState("");
     const [confirmPassword, setPassword] = useState("");
@@ -26,7 +30,13 @@ function SignUp(){
 
 
     async function signup(event){
-        event.preventDefault();
+        //event.preventDefault();
+
+        try {
+            const values = await form.validateFields(); // This will trigger form validation
+            // If validation passes, you can proceed with your API call
+            // ...
+           
 
         if (!firstName || !lastName || !email || !username || !confirmPassword) {
             alert("Please fill out all fields.");
@@ -83,12 +93,18 @@ function SignUp(){
             setFirstName("");
             setLastName("");
         }
+    }catch (errorInfo) {
+        // Validation failed, error messages will be displayed near the form fields
+        console.error('Validation Failed:', errorInfo);
+      }
     }
+    
+    
 
 
     return(
         <div className="SignUp">
-            <Form className='loginform' onFinish={signup} labelCol={{span:10}} autoCapitalize='off'>
+            <Form className='loginform' form={form}  onFinish={signup} labelCol={{span:10}} autoCapitalize='off'>
                 <Typography.Title>WELCOME</Typography.Title>
 
 
@@ -202,7 +218,9 @@ function SignUp(){
 
 
                 <Form.Item >
-                    <Button type="primary" htmlType="submit" onClick={signup} >
+                    <Button type="primary" htmlType="submit" 
+                    // onClick={signup}
+                     >
                                         Sing Up
                     </Button>
 

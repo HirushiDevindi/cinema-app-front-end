@@ -52,7 +52,7 @@ function ProfileEdit(){
             firstName: userData ? userData.firstName : "",
             lastName: userData ? userData.lastName : "",
             password: getPasswordFromLocalStorage(), // You may want to handle password differently
-            confirmPassword: getPasswordFromLocalStorage(),
+            //confirmPassword: getPasswordFromLocalStorage(),
         });
     }, [form, userData]);
 
@@ -65,7 +65,12 @@ function ProfileEdit(){
 
 
     async function update(event){
-        event.preventDefault();
+        //event.preventDefault();
+        try {
+          const values = await form.validateFields(); // This will trigger form validation
+          // If validation passes, you can proceed with your API call
+          // ...
+         
         console.log('User ID:', userData.userId);
 
         if (!firstName || !lastName || !email || !username || !confirmPassword) {
@@ -116,6 +121,10 @@ function ProfileEdit(){
             // setFirstName("");
             // setLastName("");
         }
+      }catch (errorInfo) {
+        // Validation failed, error messages will be displayed near the form fields
+        console.error('Validation Failed:', errorInfo);
+      }
     }
 
 
@@ -127,8 +136,21 @@ function ProfileEdit(){
 
                 <Form.Item name="firstName" label="First Name" 
                     rules={[
-                        {required:true},
+                        // {required:true},
                         { whitespace:true},
+                        {
+                            validator: (_, value) => {
+                              if (value === userData.firstName || value.trim() !== '') {
+                                // Field has not been modified, so it's not required
+                                return Promise.resolve();
+                              }
+                              // Field has been modified, so it's required
+                              if (!value) {
+                                return Promise.reject("Please enter the first name");
+                              }
+                              return Promise.resolve();
+                            },
+                          },
                         ]}
                         hasFeedback
                 > 
@@ -139,8 +161,21 @@ function ProfileEdit(){
 
                 <Form.Item name="lastName" label="Last Name" 
                         rules={[
-                            {required:true},
+                            // {required:true},
                             {whitespace:true},
+                            {
+                                validator: (_, value) => {
+                                  if (value === userData.lastName || value.trim() !== '') {
+                                    // Field has not been modified, so it's not required
+                                    return Promise.resolve();
+                                  }
+                                  // Field has been modified, so it's required
+                                  if (!value) {
+                                    return Promise.reject("Please enter the last name");
+                                  }
+                                  return Promise.resolve();
+                                },
+                              },
                             ]}
                             hasFeedback
                 >
@@ -155,10 +190,23 @@ function ProfileEdit(){
                     label="Email" 
                     rules={[
                         {
-                            required:true,
+                            // required:true,
                             type:"email",
                             message:"Please enter a valid email"
                         },
+                        {
+                            validator: (_, value) => {
+                              if (value === userData.email || value.trim() !== '') {
+                                // Field has not been modified, so it's not required
+                                return Promise.resolve();
+                              }
+                              // Field has been modified, so it's required
+                              if (!value) {
+                                return Promise.reject("Please enter a email");
+                              }
+                              return Promise.resolve();
+                            },
+                          },
                         ]}
                         hasFeedback
                 >
@@ -171,8 +219,21 @@ function ProfileEdit(){
 
                 <Form.Item name="username" label="Username" 
                     rules={[
-                        {required:true},
+                        // {required:true},
                         {whitespace:true},
+                        {
+                            validator: (_, value) => {
+                              if (value === userData.username || value.trim() !== '') {
+                                // Field has not been modified, so it's not required
+                                return Promise.resolve();
+                              }
+                              // Field has been modified, so it's required
+                              if (!value) {
+                                return Promise.reject("Please enter a username");
+                              }
+                              return Promise.resolve();
+                            },
+                          },
                         ]}
                         hasFeedback
                 >
@@ -184,18 +245,25 @@ function ProfileEdit(){
 
                 <Form.Item name="password" label="Password" 
                     rules={[
-                        {required:true, message: 'Please enter a password'},
+                        // {required:true, message: 'Please enter a password'},
                         {whitespace:true, message: 'Password cannot contain whitespace'},
                         {min:3, message: 'Password must be at least 3 characters long'},
+                        
                         {
                             validator:(_,value)=>{
+                                
                                 if (!value) {
                                     return Promise.reject('Please enter a password');
                                   }
                                   if (!/[A-Z]/.test(value)) {
                                     return Promise.reject('Password must contain at least one capital letter');
                                   }
+                                  if (value === getPasswordFromLocalStorage()) {
+                                    // Field has not been modified, so it's not required
+                                    return Promise.resolve();
+                                  }
                                   return Promise.resolve();
+                                  
                                 },
                             },
                             //value && value.includes('A') ? Promise.resolve():Promise.reject('Password doesnot match the criteria')
@@ -213,13 +281,19 @@ function ProfileEdit(){
                 <Form.Item name="confirmPassword" label="Confirm Password" 
                     dependencies={["password"]}
                     rules={[
-                        {required:true},
+                        //{required:true},
                         {whitespace:true},
+                       // {min:3, message: 'Password must be at least 3 characters long'},
                         ({getFieldValue})=>({
                             validator(_,value){
-                                if(!value || getFieldValue('password')=== value){
+                                
+                                if(value && getFieldValue('password')=== value ){
                                     return Promise.resolve()
+                                }if (value === getPasswordFromLocalStorage()) {
+                                  // Field has not been modified, so it's not required
+                                  return Promise.resolve();
                                 }
+                                
                                 return Promise.reject('The two password that you entered does not match.');
                             }
                         }),
@@ -235,7 +309,9 @@ function ProfileEdit(){
 
 
                 <Form.Item >
-                    <Button type="primary" htmlType="submit" onClick={update} >
+                    <Button type="primary" htmlType="submit" 
+                    // onClick={update} 
+                    >
                                         Update
                     </Button>
 
