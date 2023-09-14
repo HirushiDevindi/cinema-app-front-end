@@ -26,6 +26,8 @@ import AddSeat2 from './Components/Seat/AddSeat2';
 import AddMovie2 from './Components/Movie/AddMovie2';
 import AddMovieShow2 from './Components/MovieShow/AddMovieShow2';
 
+//import { getUserDataFromLocalStorage } from './Components/Utils/LocalStorage';
+
 
 function App() {
   // return (
@@ -47,6 +49,7 @@ function App() {
   //   </div>
   // );
 
+  //const userData = getUserDataFromLocalStorage();
   const AppLayout = () => (
     <>
       <Home />
@@ -76,7 +79,7 @@ function App() {
 
         <Route path="/SignUp" element={<SignUp/>} />
         <Route path="/SignIn" element={<SignIn />} />
-        <Route path="/ProfileEdit" element={<ProfileEdit/>}/>
+        <Route path="/ProfileEdit" element={<ProfileEdit />} />
 
         <Route path="/AddMovie" element={<AddMovie/>}/>
         {/* <Route path="/EditMovie/:movieId" element={<AddMovie/>} /> */}

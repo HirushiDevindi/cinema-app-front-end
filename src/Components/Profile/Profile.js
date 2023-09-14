@@ -1,6 +1,6 @@
 import React from "react";
 import './Profile.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 
 import { getUserDataFromLocalStorage } from "../Utils/LocalStorage";
@@ -8,6 +8,24 @@ import { getUserDataFromLocalStorage } from "../Utils/LocalStorage";
 function Profile(){
 
     const userData = getUserDataFromLocalStorage();
+    const navigate = useNavigate();
+
+    
+
+    // Define a function to pass userData as state
+    // const linkToProfileEdit = {
+    //     pathname: '/ProfileEdit',
+    //     state: { userData: userData },
+        
+    // };
+
+    const handleUpdateProfileClick = () => {
+        navigate('/ProfileEdit', { state: { userData } });
+    };
+
+    
+
+    console.log(userData);
         return (
         <div className="profile-container">
             <h1 className="profile-heading">----- Your Profile Details -----</h1>
@@ -24,9 +42,15 @@ function Profile(){
                 <p>User data not available.</p>
             )}
             <div className="button-container">
-                <Link to="/ProfileEdit" className="update-button">
+                {/* <Link to="/ProfileEdit" className="update-button">
                     Update Profile
-                </Link>
+                </Link> */}
+                {/* <Link to={linkToProfileEdit} className="update-button" onClick={() => navigate('/ProfileEdit')}>
+                    Update Profile
+                </Link> */}
+                <button className="update-button" onClick={handleUpdateProfileClick}>
+                    Update Profile
+                </button>
             </div>
         </div>
     );

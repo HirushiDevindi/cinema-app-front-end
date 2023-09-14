@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import{Form, Button,Input,Select, Typography, Divider} from 'antd';
 //import { useNavigate, Link, Navigate } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate , useLocation } from 'react-router-dom';
 import axios from "axios";
 //import { useDispatch ,useSelector} from "react-redux";
 //npm inimport UserService from './Service/UserService';
@@ -16,14 +16,45 @@ import { getPasswordFromLocalStorage } from '../Utils/LocalStorage';
 
 function ProfileEdit(){
 
-    const userData = getUserDataFromLocalStorage();
+    //const userData = getUserDataFromLocalStorage();
+    const location = useLocation();
+    const { userData } = location.state || {};
+    //const userData = location.state?.userData || {};
 
+    const [form] = Form.useForm(); // Create a form instance
 
-    const[username, setUsername] = useState(userData.username);
+    console.log(userData);
+    const[username, setUsername] = useState(userData ? userData.username : "");
+    console.log(username);
     const [confirmPassword, setPassword] = useState("");
-    const [email, setEmail] = useState(userData.email);
-    const [firstName, setFirstName] = useState(userData.firstName);
-    const [lastName, setLastName] = useState(userData.lastName);
+    const [email, setEmail] = useState(userData ? userData.email : "");
+    const [firstName, setFirstName] = useState(userData ? userData.firstName : "");
+    const [lastName, setLastName] = useState(userData ? userData.lastName : "");
+    const [password, setPw] = useState("");
+
+    // useEffect(()=>{
+    //     setUsername(userData ? userData.username : "");
+    //     setEmail(userData ? userData.email : "");
+    //     setFirstName(userData ? userData.firstName : "");
+    //     setLastName(userData ? userData.lastName : "");
+    //     setPw("");
+    //     setPassword("");
+
+    // },[userData])
+
+    console.log(username,email,firstName,lastName,password,confirmPassword);
+
+    useEffect(() => {
+        // Set initial values for the form fields
+        form.setFieldsValue({
+            username: userData ? userData.username : "",
+            email: userData ? userData.email : "",
+            firstName: userData ? userData.firstName : "",
+            lastName: userData ? userData.lastName : "",
+            password: getPasswordFromLocalStorage(), // You may want to handle password differently
+            confirmPassword: getPasswordFromLocalStorage(),
+        });
+    }, [form, userData]);
 
 
 
@@ -79,18 +110,18 @@ function ProfileEdit(){
             }
         }finally{
             //Reset form fields
-            setUsername("");
-            setPassword("");
-            setEmail("");
-            setFirstName("");
-            setLastName("");
+            // setUsername("");
+            // setPassword("");
+            // setEmail("");
+            // setFirstName("");
+            // setLastName("");
         }
     }
 
 
     return(
         <div className="ProfileEdit">
-            <Form className='editform' onFinish={update} labelCol={{span:10}} autoCapitalize='off'>
+            <Form className='editform' form={form} onFinish={update} labelCol={{span:10}} autoCapitalize='off' initialValues={{ remember: true }}>
                 <Typography.Title>PROFILE</Typography.Title>
 
 
