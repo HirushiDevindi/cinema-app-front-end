@@ -221,7 +221,7 @@ function SignUp(){
                     <Button type="primary" htmlType="submit" 
                     // onClick={signup}
                      >
-                                        Sing Up
+                                        Sign Up
                     </Button>
 
                 </Form.Item>
