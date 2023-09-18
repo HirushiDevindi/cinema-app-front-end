@@ -26,11 +26,11 @@ function ProfileEdit(){
     console.log(userData);
     const[username, setUsername] = useState(userData ? userData.username : "");
     console.log(username);
-    const [confirmPassword, setPassword] = useState("");
+    //const [confirmPassword, setPassword] = useState("");
     const [email, setEmail] = useState(userData ? userData.email : "");
     const [firstName, setFirstName] = useState(userData ? userData.firstName : "");
     const [lastName, setLastName] = useState(userData ? userData.lastName : "");
-    const [password, setPw] = useState("");
+    //const [password, setPw] = useState("");
 
     // useEffect(()=>{
     //     setUsername(userData ? userData.username : "");
@@ -42,7 +42,7 @@ function ProfileEdit(){
 
     // },[userData])
 
-    console.log(username,email,firstName,lastName,password,confirmPassword);
+    console.log(username,email,firstName,lastName);
 
     useEffect(() => {
         // Set initial values for the form fields
@@ -51,7 +51,7 @@ function ProfileEdit(){
             email: userData ? userData.email : "",
             firstName: userData ? userData.firstName : "",
             lastName: userData ? userData.lastName : "",
-            password: getPasswordFromLocalStorage(), // You may want to handle password differently
+            //password: getPasswordFromLocalStorage(), // You may want to handle password differently
             //confirmPassword: getPasswordFromLocalStorage(),
         });
     }, [form, userData]);
@@ -73,7 +73,7 @@ function ProfileEdit(){
          
         console.log('User ID:', userData.userId);
 
-        if (!firstName || !lastName || !email || !username || !confirmPassword) {
+        if (!firstName || !lastName || !email || !username ) {
             alert("Please fill out all fields.");
             return;
           }
@@ -85,7 +85,7 @@ function ProfileEdit(){
                 lastName:lastName,
                 email:email,
                 username:username,
-                password:confirmPassword
+                password:getPasswordFromLocalStorage()
 
             }, {
                 auth: {
@@ -98,7 +98,8 @@ function ProfileEdit(){
                 if(message.message==="User is updated successfully!."){
                     alert("Your profile is updated succesfully");
                     setUserDataToLocalStorage(message.user);
-                    navigate("/SignIn");
+                    //navigate("/SignIn");
+                    navigate("/Profile")
     
                 }
             
@@ -243,7 +244,7 @@ function ProfileEdit(){
 
 
 
-                <Form.Item name="password" label="Password" 
+                {/* <Form.Item name="password" label="Password" 
                     rules={[
                         // {required:true, message: 'Please enter a password'},
                         {whitespace:true, message: 'Password cannot contain whitespace'},
@@ -272,13 +273,13 @@ function ProfileEdit(){
                         hasFeedback
                 >
                     <Input.Password placeholder='Enter a password' />
-                </Form.Item>
+                </Form.Item> */}
 
 
 
 
 
-                <Form.Item name="confirmPassword" label="Confirm Password" 
+                {/* <Form.Item name="confirmPassword" label="Confirm Password" 
                     dependencies={["password"]}
                     rules={[
                         //{required:true},
@@ -301,7 +302,7 @@ function ProfileEdit(){
                         hasFeedback
                 >
                     <Input.Password placeholder='Confirm your password' value={confirmPassword} onChange={(e) => setPassword(e.target.value)} />
-                </Form.Item>
+                </Form.Item> */}
 
 
 
